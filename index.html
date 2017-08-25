@@ -3,9 +3,8 @@
 <head>
   <title>crystal game</title>
 
-  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  
+  <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
   
 
 </head>
@@ -34,8 +33,8 @@
           You will be given a random number at the start of the game.
           There are four crystals below.  By clicking on a crystal you
           will add a specific amount of points to your total score.
-          You win the game by matching your total score to random
-          number, you lose the game if your total score goes above
+          You win the game by matching your total score to the random
+          number, and you lose the game if your total score goes above
           the random number.  The value of each crystal is hidden from you until you
           click on it.  Each time when the game starts, the game will change the
           value of each crystal!
@@ -43,19 +42,6 @@
         </div>
     </div>
 
-
-    <div class="row">
-        <!-- Layout for Random Number Display -->
-        <div class="col-lg-6 numberContainer">
-          <h1>Number to Match: <span id="number-to-guess"></span></h1>
-        </div>
-  
-        <!-- Layout for Win Loss Tracker -->
-        <div class="col-lg-6 winlossContainer">
-          <h1>Wins: Losses:</h1>
-        </div>
-        
-    </div>
     <div class="row">
         <!-- Container for 4 Crystal Images -->
         <div class="col-lg-3 crystalContainerA">
@@ -77,6 +63,13 @@
           
         </div>
     </div>
+
+    <div class="row">
+        <!-- Empty Space -->
+        <div class="col-lg-12">
+          <h1></h1>
+        </div>
+    </div>
         
   
     <div class="row">
@@ -87,12 +80,19 @@
     </div>
 
     <div class="row">
-        <!-- ScoreKeeper Layout -->
-        <div class="col-lg-5">
-          
+        <!-- Layout for Random Number Display -->
+        <div class="col-lg-6 numberContainer">
+          <h1>Number to Match: <span id="number-to-guess"></span></h1>
         </div>
-        <!-- Empty Layout -->
-        <div class="col-lg-7"></div>
+  
+        <!-- Layout for Win Loss Tracker -->
+        <div class="col-lg-3">
+          <h1>Wins:  <span id="winning"></span></h1>
+        </div>
+        <div class="col-lg-3">
+          <h1>Losses:  <span id="losing"></span></h1>
+        </div>
+        
     </div>
 </div>
   <!-- End of CSS Grid Layout -->
@@ -131,34 +131,40 @@
 
   var winner = function () {
     wins++;
-    alert("You Win!");
+    var winningVariable = wins;
+    $("#winning").text(winningVariable);
+    alert("You Win!  Your final score is: " + counter);
     reset();
   };
 
   var loser = function () {
     losses++;
+    var losingVariable = losses;
+    $("#losing").text(losingVariable);
     alert("You Lose! Your final score is: " + counter);
     reset();
   };
+
   var reset = function () {
+    
+    
+    targetNumber=Math.floor((Math.random() * 120) + 19);
+    console.log(targetNumber);
+    $("#number-to-guess").text(targetNumber);
+    var imageCrystalA = $("#crystal-A");
+    imageCrystalA.attr("crystalValueA", Math.floor((Math.random() * 12) + 1));
+
+    var imageCrystalB = $("#crystal-B");
+    imageCrystalB.attr("crystalValueB", Math.floor((Math.random() * 12) + 1));
+
+    var imageCrystalC = $("#crystal-C");
+    imageCrystalC.attr("crystalValueC", Math.floor((Math.random() * 12) + 1));
+
+    var imageCrystalD = $("#crystal-D");
+    imageCrystalD.attr("crystalValueD", Math.floor((Math.random() * 12) + 1));
     counter = 0;
-    targetNumber = Math.floor((Math.random() * 120) + 19);
-    crystalValueA=0;
-    crystalValueB=0;
-    crystalValueC=0;
-    crystalValueD=0;
-
-
-  }
-
-  // var reset = function () {
-  //   wins = 0;
-  //   losses = 0;
-  //   counter = 0;
-  //   targetNumber=Math.floor((Math.random() * 120) + 19);
-  //   console.log(targetNumber);
-  //   $("#number-to-guess").text(targetNumber);
-  // };
+    $("#counter").text(counter);
+  };
 
   //Click Event for Crystal A
   $("#crystal-A").on("click", function() {
