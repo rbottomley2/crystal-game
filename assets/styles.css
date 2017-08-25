@@ -1,0 +1,14 @@
+body {
+    background-image: url("https://cdn.tutsplus.com/vector/uploads/legacy/articles/2011/article-free-vector-downloads-illustrator-patterns/12.jpg");
+    }
+
+.jumbotron {
+    background-image: url("http://www.zingerbug.com/Backgrounds/background_images/white_crystal_surface.jpg");
+    text-align: center;
+    }
+#instructions {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: strong;
+    }

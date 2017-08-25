@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>crystal game</title>
+
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  
+  
+
+</head>
+<body> 
+
+<!-- Grid Layout for Crystal Game -->
+
+<div class="container">
+    <!-- Top Row for Title Bar -->
+    <div class="row">
+        
+        <!-- Layout for Game Title -->
+        <div class="col-lg-12">
+          <div class="jumbotron">
+            <h1>The Magic Crystal Game!</div></h1>
+          </div>
+        </div>
+        
+    </div>
+  
+</div>
+    <div class="row" id="instructions">
+        <!-- Layout for Game Instructions -->
+        <div class="col-lg-12">
+          <p>
+          You will be given a random number at the start of the game.
+          There are four crystals below.  By clicking on a crystal you
+          will add a specific amount of points to your total score.
+          You win the game by matching your total score to random
+          number, you lose the game if your total score goes above
+          the random number.  The value of each crystal is hidden from you until you
+          click on it.  Each time when the game starts, the game will change the
+          value of each crystal!
+          </p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <!-- Layout for Random Number Display -->
+        <div class="col-lg-6 numberContainer">
+          <h1>Number to Match: <span id="number-to-guess"></span></h1>
+        </div>
+  
+        <!-- Layout for Win Loss Tracker -->
+        <div class="col-lg-6 winlossContainer">
+          <h1>Wins: Losses:</h1>
+        </div>
+        
+    </div>
+    <div class="row">
+        <!-- Container for 4 Crystal Images -->
+        <div class="col-lg-3 crystalContainerA">
+          
+          <img id="crystal-A" src="http://vignette1.wikia.nocookie.net/marvel-contestofchampions/images/1/10/Arena_Crystal.png/revision/latest?cb=20150825214845" width="100px" height="100px"></img>
+          
+        </div>
+        <div class="col-lg-3 crystalContainerB">
+          <img id="crystal-B" src="https://i.pinimg.com/236x/c8/1d/20/c81d209c4f65cfc2d3410d149ccda0b7--stones-and-crystals-crystals-and-gemstones.jpg" 
+          width="100px" height="100px"></img>  
+        </div>
+        <div class="col-lg-3 crystalContainerC"> 
+          <img id="crystal-C" src="http://3rdphazebodyoil.net/images/136_BLACK_DIAMOND_LOGO.jpg" width="100px" height="100px"></img>
+           
+        </div>
+        
+        <div class="col-lg-3 crystalContainerD">
+          <img id="crystal-D" src="https://i.pinimg.com/236x/fa/b5/f8/fab5f83899a1dbb6343fdc3da3f86ec1--behance-material.jpg" width="100px" height="100px"></img>
+          
+        </div>
+    </div>
+        
+  
+    <div class="row">
+        <!-- ScoreKeeper Title Bar -->
+        <div class="col-lg-12">
+          <h1>Your Score So Far Is:<span id="counter">0</span></h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- ScoreKeeper Layout -->
+        <div class="col-lg-5">
+          
+        </div>
+        <!-- Empty Layout -->
+        <div class="col-lg-7"></div>
+    </div>
+</div>
+  <!-- End of CSS Grid Layout -->
+
+  
+  <!-- JAVASCRIPT  -->
+  <!-- ========================================= -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+  
+
+
+
+  var counter = 0;
+  var wins = 0;
+  var losses = 0;
+  console.log(counter);
+  $("#counter").text(counter);
+
+  var targetNumber=Math.floor((Math.random() * 120) + 19);
+  console.log(targetNumber);
+  $("#number-to-guess").text(targetNumber);
+
+  
+  var imageCrystalA = $("#crystal-A");
+  imageCrystalA.attr("crystalValueA", Math.floor((Math.random() * 12) + 1));
+
+  var imageCrystalB = $("#crystal-B");
+  imageCrystalB.attr("crystalValueB", Math.floor((Math.random() * 12) + 1));
+
+  var imageCrystalC = $("#crystal-C");
+  imageCrystalC.attr("crystalValueC", Math.floor((Math.random() * 12) + 1));
+
+  var imageCrystalD = $("#crystal-D");
+  imageCrystalD.attr("crystalValueD", Math.floor((Math.random() * 12) + 1));
+
+  var winner = function () {
+    wins++;
+    alert("You Win!");
+    reset();
+  };
+
+  var loser = function () {
+    losses++;
+    alert("You Lose! Your final score is: " + counter);
+    reset();
+  };
+  var reset = function () {
+    counter = 0;
+    targetNumber = Math.floor((Math.random() * 120) + 19);
+    crystalValueA=0;
+    crystalValueB=0;
+    crystalValueC=0;
+    crystalValueD=0;
+
+
+  }
+
+  // var reset = function () {
+  //   wins = 0;
+  //   losses = 0;
+  //   counter = 0;
+  //   targetNumber=Math.floor((Math.random() * 120) + 19);
+  //   console.log(targetNumber);
+  //   $("#number-to-guess").text(targetNumber);
+  // };
+
+  //Click Event for Crystal A
+  $("#crystal-A").on("click", function() {
+        var valueA = ($(this).attr("crystalValueA"));
+        console.log(valueA);
+        valueA = parseInt(valueA);
+        console.log(counter,valueA);
+        counter += valueA;
+        console.log(counter);
+        $("#counter").text(counter);
+        if (counter === targetNumber) {
+          winner();
+          
+        } else if (counter > targetNumber ) {
+          loser();
+        } 
+  });
+  $("#crystal-B").on("click", function() {
+        var valueB = ($(this).attr("crystalValueB"));
+        valueB = parseInt(valueB);
+        counter += valueB;
+        console.log(counter);
+        $("#counter").text(counter);
+        if (counter === targetNumber) {
+          winner();
+          
+        } else if (counter > targetNumber) {
+          loser();
+
+        } 
+        
+  });
+  $("#crystal-C").on("click", function() {
+        var valueC = ($(this).attr("crystalValueC"));
+        valueC = parseInt(valueC);
+        counter += valueC;
+        console.log(counter);
+        $("#counter").text(counter);
+        if (counter === targetNumber) {
+          winner();
+          
+        } else if (counter > targetNumber) {
+          loser();
+
+        } 
+        
+  });
+  $("#crystal-D").on("click", function() {
+        var valueD = ($(this).attr("crystalValueD"));
+        valueD = parseInt(valueD);
+        counter += valueD;
+        console.log(counter);
+        $("#counter").text(counter);
+        if (counter === targetNumber) {
+          winner();
+          
+        } else if (counter > targetNumber) {
+          loser();
+
+        } 
+        
+  });
+
+  
+  
+  
+
+
+
+  
+  
+</script>
+</body>
+</html>
