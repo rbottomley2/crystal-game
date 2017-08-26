@@ -1,5 +1,5 @@
 body {
-    background-image: url("https://cdn.tutsplus.com/vector/uploads/legacy/articles/2011/article-free-vector-downloads-illustrator-patterns/12.jpg");
+    background-image: url("http://wallpapercave.com/wp/n9HpwwR.jpg");
     }
 
 .jumbotron {
@@ -12,3 +12,32 @@ body {
     font-size: 18px;
     font-weight: strong;
     }
+#crystalContainer {
+	border:2px solid black;
+	text-align: center;
+	background-image: url("http://www.zingerbug.com/Backgrounds/background_images/white_crystal_surface.jpg"); 
+}
+#randomNumber {
+	border:2px solid black;
+	text-align: center;
+	background-image: url("http://www.zingerbug.com/Backgrounds/background_images/white_crystal_surface.jpg"); 
+}
+#score {
+	border:2px solid black;
+	text-align: center;
+	background-image: url("http://www.zingerbug.com/Backgrounds/background_images/white_crystal_surface.jpg"); 
+}
+#yourWins {
+	border:2px solid black;
+	text-align: center;
+	background-image: url("http://www.zingerbug.com/Backgrounds/background_images/white_crystal_surface.jpg");
+}
+#yourlosses {
+	border:2px solid black;
+	text-align: center;
+	background-image: url("http://www.zingerbug.com/Backgrounds/background_images/white_crystal_surface.jpg");
+	
+}
+#spacer {
+	visibility: hidden;
+}
